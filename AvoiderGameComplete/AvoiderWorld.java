@@ -47,9 +47,37 @@ public class AvoiderWorld extends World
         levelCounter.setValue(1);
         addObject(levelCounter, 70, 20);
     }
-
     public void act() {
         // Randomly add enemies to the world
+        increaseLevel();
+        generateEnemies();
+        generateStars();
+        
+    }
+    public void generateStars(){
+    if(Greenfoot.getRandomNumber(1000) < 20) {
+           Star s = new Star();
+           addObject(s, Greenfoot.getRandomNumber(getWidth() - 20)+ 10, -30);
+            // Give us some points for facing yet another enemy
+           GreenfootImage image = s.getImage(); 
+    if(Greenfoot.getRandomNumber(1000) < 300) {
+         s.setSpeed(3);
+         image.setTransparency(
+         Greenfoot.getRandomNumber(25)+225);
+         image.scale(4,4);
+            // Give us some points for facing yet another enemy
+     } else{
+         s.setSpeed(2);
+         image.setTransparency(
+         Greenfoot.getRandomNumber(50)+100);
+         image.scale(2,2);
+    }
+    s.setImage(image);
+    addObject(s, Greenfoot.getRandomNumber(
+    getWidth()-20)+10, -1);
+    }
+} 
+    public void generateEnemies() {
         if(Greenfoot.getRandomNumber(1000) < 20) {
             Enemy e = new Enemy();
             e.setSpeed(enemySpeed);
@@ -57,9 +85,8 @@ public class AvoiderWorld extends World
             // Give us some points for facing yet another enemy
             scoreBoard.setValue(scoreBoard.getValue() + 1);
         }
-        increaseLevel();
+        
     }
-
     public void endGame() {
         bgm.stop();
         AvoiderGameOverWorld go = new AvoiderGameOverWorld();
