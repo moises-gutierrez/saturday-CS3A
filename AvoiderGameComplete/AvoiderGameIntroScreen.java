@@ -17,7 +17,7 @@ public class AvoiderGameIntroScreen extends World
     public AvoiderGameIntroScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+        super(600, 400, 1);  
         introMusic = new GreenfootSound("sounds/intro.mp3");
         introPlayed = false;
     }
